@@ -1,0 +1,13 @@
+[Unit]
+Description=demo fast application
+After=network.target
+
+[Service]
+User=jagraj
+Group=jagraj
+WorkingDirectory=/home/jagraj/app/src/
+Environment="PATH=/home/jagraj/app/venv/bin"
+ExecStart=/home/jagraj/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
+
+[Install]
+WantedBy=multi-user.target
